@@ -1,0 +1,74 @@
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	font-family:'Microsoft YaHei';
+	background: gray;
+}
+.container{
+	padding:200px;
+	position:absolute;
+	width:950px;
+	margin:auto;
+}
+.divr90{
+	display:inline-block;
+	position: absolute;
+	color:#f39;
+	top:120px;
+	left: 100px;
+	font-weight:bold;
+	background: #FFF;
+	font-size:18px;
+	width:auto;
+	padding:10px 20px;
+	transition:2s;
+	animation:roll 3s infinite linear;
+}
+.divr90:hover{
+	animation-play-state: paused;
+}
+.div:before{
+	font-family:'FontAwesome';
+	content:"\f101";
+}
+.div{
+	position: relative;
+	top:100px;
+	display:inline-block;
+	background: #f39;
+	font-size:18px;
+	width:100px;
+	height:20px;
+	transition:width 3s,height 1s;
+	padding:10px 20px;
+}
+.div:hover{
+	cursor:pointer;
+	width:500px;
+	height:90px;
+}
+.rotate45{
+	transform:rotate(45deg);
+}
+.rotate90{
+	transform:rotate(90deg);
+}
+.rotate135{
+	transform:rotate(135deg);
+}
+.rotate180{
+	transform:rotate(180deg);
+}
+.rotate225{
+	transform:rotate(225deg);
+}
+@keyframes roll{
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}

@@ -1,0 +1,341 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../font/fontawesome-webfont.eot?v=3.2.1');
+  src: url('../font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('../font/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('../font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('../font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+body{
+		background:rgb(245,245,245);
+		background: -webkit-linear-gradient(white 40%,deepskyblue) no-repeat;
+		background: url("../src/bg.jpg");
+		background-attachment: fixed;
+}
+.alert{
+	font-size: 30px;
+	text-align: center;
+	top:0px;
+	right:0px;
+	display: block;
+	z-index: 100;
+	position:fixed;
+	width: 100%;
+	height:100%;
+	background: rgba(235, 242, 211, 0.5);
+}
+.alert button{
+	padding: 10px 20px;
+	font-size: 30px;
+	margin-top:20%;
+}
+*{
+	margin:0;
+	padding:0;
+	font-family:'FontAwesome';
+	font-weight: normal;
+  	font-style: normal;
+}
+.container{
+	background:#FFF;
+	//background:-webkit-linear-gradient(deepskyblue 20%,white);
+	box-shadow:0px 0px 5px 3px rgb(145,145,145);
+	padding:30px;
+	position: relative;
+	width:960px;
+	margin:auto;
+	background-attachment: fixed;
+}
+.pill{
+	display:block;
+	float:left;
+	cursor: pointer;
+	color:#333;
+	line-height:0.8em;
+	text-align:center;
+	overflow:hidden;
+	background: rgb(245,245,245);
+	padding:5px;
+	width: 160px;
+	height:40px;
+	font-size:24px;
+	border:1px solid rgb(215,215,215);
+	border-radius:4px;
+	transition:0.5s;
+	margin:20px 8px;
+}
+.pill:hover{
+	transform: scale(1.5);	
+}
+.pill p{
+	margin-top:8px;
+	font-size:14px;
+	border-top:1px rgb(205,215,205) solid;
+	color:rgb(18, 53, 18);
+}
+.clear{
+	width:100%;
+	display:block;
+	height:10px;
+	clear:both;
+}
+h1.title
+{
+	font-family:'Verdana';
+	font-size:80px;
+	display: block;
+	top:50%;
+	width: 100%;
+	position: absolute;
+	text-align: center;
+	color:#fff;
+	text-shadow: 2px 2px 3px black;
+}
+h1.logo
+{
+	top:32%;
+	font-size:160px;
+	width: 100%;
+	position: absolute;
+	text-align: center;
+	color:rgb(0, 242, 0);
+}
+.logo:before{
+	color:#fff;
+	content: '\f17a';
+}
+.clock{
+	font-family:'Verdana';
+	text-align:center;
+	position:absolute;
+	top:47px;
+	border-radius:10px;
+	padding: 20px 10px;
+	opacity:0.5;
+	font-size:24px;
+	right:50px;
+}
+.clock-icon{
+	display:inline-block;
+	animation:roll 1s infinite linear;
+}
+.clock-icon:before{
+	color:#006;
+	font-size:28px;
+	content:'\f017';
+	font-family: 'FontAwesome';
+}
+.clock i{
+	font-family:'Microsoft YaHei';
+	color:#fff;
+	margin:4px;
+	padding: 3px;
+	background: rgb(255, 117, 51);
+	border-radius:3px;
+}
+.clock:hover{
+	color:#fff;
+	background:rgb(0, 176, 80);
+	cursor:pointer;
+	animation-play-state:paused;
+	opacity:0.8;
+}
+@keyframes roll{
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
+.fixedmodel{
+	position:fixed;
+	border-radius:4px;
+	z-index: 100;
+	background: #fff;
+	border:1px #333 solid;
+	padding: 10px;
+	font-size:24px;
+	top:-200px;
+	left:-200px;
+}
+.inputbox{
+	margin:50px 200px;
+	display: block;
+	background: white;
+	width:200px;
+	padding: 5px 10px;
+	border-radius:4px;
+	border: 2px solid #666;
+}
+.inputbox input[type="text"]{
+	font-size:20px;
+	text-align:center;
+	padding:3px;
+	height: 30px;
+	outline:none;
+	width:170px;
+	border: 1px white solid;
+}
+.btn{
+	display: inline;
+	border-radius:4px;
+	background:-webkit-linear-gradient(#fff,rgb(205,205,205));
+	border:2px solid #333;
+	position: relative;
+	cursor:pointer;
+	padding:10px 20px;
+}
+.mao{
+	position:absolute;
+	top:20%;
+	left:45%;
+	display: block;
+	width:30px;
+	height:30px;
+}
+.mao:before{
+	font-size: 18px;
+	content: '\f041';
+}
+.tooltip
+{
+	font-family:'MicroSoft YaHei';
+	border-radius:10px;
+	display:none;
+	padding:20px 20px;
+	right:-260px;
+	top:-10px;
+	color:#fff;
+	width: 200px;
+	position:absolute;
+	background:#666;
+	font-size: 24px;
+	font-weight:bold;
+}
+.show:hover .tooltip{
+	display:inline;
+}
+.tooltip:before{
+	content: "";
+	position: absolute;
+	left:-18px;
+	border-width: 10px;
+	border-style:solid;
+	border-color:transparent #666 transparent transparent;
+}
+a{
+	text-decoration: none;
+	text-align: center;
+}
+.login{
+	color:#5fbf5e;
+	margin:30px auto 10px 30px;
+	display: block;
+	background: white;
+	padding-top:10px;
+	width: 40px;
+	text-align: center;
+	height:30px;
+	border-radius:50%;
+	transition:0.5s;
+	border: green 2px solid;
+}
+.login:hover{
+	transform: scale(1.2);
+}
+.input-box{
+	outline:none;
+	margin:0px auto 10px 30px;
+	padding:20px;
+	border-radius:10px;
+	height:80px;
+	width:800px;
+	border: #5fbf5e 2px solid;
+}
+.commentbtn{
+	color:#fff;
+	margin:10px 90px;
+	display: block;
+	height:20px;
+	text-align: center;
+	width: 80px;
+	background-color: #5fbf5e;
+	padding: 6px 12px;
+	position: relative;
+	float: right;
+	cursor: pointer;
+	border-radius:10px;
+transition:0.5s;
+	box-shadow: 3px 3px 3px green;
+}
+.commentbtn:before{
+	content: "";
+	position: absolute;
+	top:12px;
+	left:-5px;
+	border-width: 20px;
+	border-style:solid;
+	transform: rotate(225deg);
+	border-color:transparent #5fbf5e transparent transparent;
+}
+.commentbtn:hover{
+	transform: scale(1.2);
+}
+h3{
+	margin:50px auto 0px 30px;
+	border-bottom: 2px solid #5fbf5e;
+	color:#5fbf5e;
+}
+h3 span{
+	display: inline-block;
+	height:30px;
+	width:60px;
+	margin-bottom:-1px;
+	padding: 20px auto;
+	border: 2px solid #5fbf5e;
+	border-bottom: 2px solid #FFF;
+	text-align: center;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+.newcomment{
+	border-left: 5px #5fbf5e solid;
+	border-bottom:none;
+	padding-left:20px;
+}
+.weather{
+	border-radius:50%;
+	background:radial-gradient(rgb(28, 55, 91),rgb(255,255,255));
+	background:-ms-radial-gradient(rgb(28, 55, 91),rgb(255,255,255));
+	background:-webkit-radial-gradient(rgb(28, 55, 91),rgb(255,255,255));
+	display: block;
+	position:fixed;
+	right:50px;
+	width:30px;
+	height:30px;
+	bottom: 200px;
+	padding: 8px;
+	transition: 2s;
+}
+.wrap{
+	background: rgba(255, 255, 255, 1);
+	border-radius: 3px;
+	opacity: 0;
+	transition: 2s;
+}
+.weather:before{
+	position: absolute;
+	color:#fff;
+	font-size:50px;
+	content: '\f041';
+}
+.weather:hover{
+	background:rgb(0, 176, 80); 
+	width:320px;
+	height:80px;
+	border-radius:10px;
+}
+.weather:hover .wrap{
+	opacity:1;
+
+}
