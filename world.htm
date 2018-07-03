@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="style/font-awesome.min.css">
    <style>
        .mycontainer{
+           margin:10px auto;
            position:fixed;
-           border:1px solid black;
+           top:300px;
+           padding: 10px 20px;
        }
       h3{
           color:white;
@@ -19,15 +21,18 @@
           top:300px;
           text-shadow:2px 2px 2px #ff6a00
       }
+      .fa-large{
+          font-size:200%;
+      }
    </style>
 </head>
-<body style="background-color: black">
+<body style="background-color: #292929">
    <div class="layui-container">
                 <div class="layui-row layui-col-space12">
                     <div class="layui-col-md3">
                     </div>
                     <div class="layui-col-md6">
-                        <div class="mycontainer"><h3><i class="fa fa-heart faa-pulse animated" style="color:orangered"></i><span id="output">看看和粤梅认识多久了</span></i></h3></div>
+                        <div class="mycontainer"><h3><i class="fa fa-heart fa-large faa-pulse animated" style="color:orangered"></i><span id="output">看看和粤梅认识多久了</span></i></h3></div>
                     </div>
                     <div class="layui-col-md3">
                     </div>
@@ -137,15 +142,21 @@
         var day = TotalSeconds / ds;
         //console.log(day);
         var lday = TotalSeconds % ds;
-        var hour = lday / hs;
+        var hour = parseInt(lday / hs);
+        if(hour<10)
+        hour="0"+hour;
         var lhour = lday % hs;
         //console.log(hour);
-        var min = lhour / ms;
+        var min = parseInt(lhour / ms);
+        if(min<10)
+        min="0"+min;
         //console.log(min);
         var lmin = lhour % ms;
+        if(lmin<10)
+        lmin="0"+parseInt(lmin);
         //console.log(lmin);
         TotalSeconds += 1;
-        var showStr = "Hello，my world.<br><i class=\"fa fa-clock-o\" ></i>" + parseInt(day) + "天" + parseInt(hour) + "小时" + parseInt(min) + "分" + parseInt(lmin) + "秒";
+        var showStr = "Hello,my world.<br><i class=\"fa fa-clock-o\" ></i>" + parseInt(day) + "天" + hour + "小时" + min + "分" + lmin + "秒";
         var show = document.getElementById("output");
         show.innerHTML = showStr;
     }
