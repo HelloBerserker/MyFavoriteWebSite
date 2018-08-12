@@ -1,0 +1,8 @@
+c:\users\lijinfeng\source\repos\NullValueTest\bin\Debug\TreeHoleDiaryClient.exe.config
+c:\users\lijinfeng\source\repos\NullValueTest\bin\Debug\TreeHoleDiaryClient.exe
+c:\users\lijinfeng\source\repos\NullValueTest\bin\Debug\TreeHoleDiaryClient.pdb
+c:\users\lijinfeng\source\repos\NullValueTest\bin\Debug\StackExchange.Redis.dll
+c:\users\lijinfeng\source\repos\NullValueTest\bin\Debug\StackExchange.Redis.xml
+c:\users\lijinfeng\source\repos\NullValueTest\obj\Debug\TreeHoleDiaryClient.csproj.CoreCompileInputs.cache
+c:\users\lijinfeng\source\repos\NullValueTest\obj\Debug\TreeHoleDiaryClient.exe
+c:\users\lijinfeng\source\repos\NullValueTest\obj\Debug\TreeHoleDiaryClient.pdb

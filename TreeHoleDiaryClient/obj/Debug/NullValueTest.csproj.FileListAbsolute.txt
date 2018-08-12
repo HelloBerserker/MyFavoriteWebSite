@@ -1,0 +1,9 @@
+c:\users\lijinfeng\source\repos\NullValueTest\bin\Debug\NullValueTest.exe.config
+c:\users\lijinfeng\source\repos\NullValueTest\bin\Debug\NullValueTest.exe
+c:\users\lijinfeng\source\repos\NullValueTest\bin\Debug\NullValueTest.pdb
+c:\users\lijinfeng\source\repos\NullValueTest\obj\Debug\NullValueTest.csprojResolveAssemblyReference.cache
+c:\users\lijinfeng\source\repos\NullValueTest\obj\Debug\NullValueTest.csproj.CoreCompileInputs.cache
+c:\users\lijinfeng\source\repos\NullValueTest\obj\Debug\NullValueTest.exe
+c:\users\lijinfeng\source\repos\NullValueTest\obj\Debug\NullValueTest.pdb
+c:\users\lijinfeng\source\repos\NullValueTest\bin\Debug\StackExchange.Redis.dll
+c:\users\lijinfeng\source\repos\NullValueTest\bin\Debug\StackExchange.Redis.xml

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StackExchange.Redis;
+using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
@@ -10,7 +11,18 @@ public partial class Api_GetMeetTime : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         DateTime startDate = Convert.ToDateTime(strDate);
+        string msg = "";
+        try
+        {
+            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("lijinfeng.club,password=wsljf.");
+            IDatabase db = redis.GetDatabase();
+            msg = db.StringGet("ToYueMei");
+        }
+        catch (Exception ex)
+        {
+        }
         TimeSpan timeSpan = DateTime.Now.Subtract(startDate);
-        Response.Write(Math.Round(timeSpan.TotalSeconds));
+        var obj = new { time = Math.Round(timeSpan.TotalSeconds), message = msg };
+        Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(obj));
     }
 }
