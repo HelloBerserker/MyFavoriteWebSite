@@ -42,7 +42,7 @@
                     <div class="layui-col-md3 layui-col-sm2">
                     </div>
                     <div class="layui-col-md6 layui-col-sm6">
-                        <div class="mycontainer"><h3><i class="fa fa-paper-plane-o fa-large faa-pulse animated" style="color:orangered"></i><span id="output"></span></i></h3></div>
+                        <div class="mycontainer"><h3><i class="fa fa-paper-plane-o fa-large faa-pulse animated" style="color:rgb(248, 244, 242)"></i><span id="output"></span></i></h3></div>
                     </div>
                     <div class="layui-col-md3 layui-col-sm2">
                     </div>
@@ -156,7 +156,7 @@
         var day=d.getDate();
         var hour=d.getHours();
         var min=d.getMinutes()+1;
-        var showStr =showMsg+"<br><i class=\"fa fa-clock-o\" ></i>" + year + "-" + month + "-" + day + " " +  hour + ":"+min;
+        var showStr =showMsg+"<br><i class=\"fa fa-clock-o\" ></i>" + year + "/" + month + "/" + day + " " +  hour + ":"+min;
         var show = document.getElementById("output");
         show.innerHTML = showStr;
     }
