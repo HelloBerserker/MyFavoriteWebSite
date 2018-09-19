@@ -24,20 +24,28 @@
            height:30px;
            padding:3px 6px;
            text-align:center;
-           color:wheat;
+           color:white;
            width:100%;
        }
       .fa-large{
-          font-size:200%;
+          font-size:400%;
       }
       #output{
-          font-size:150%;
+          font-size:300%;
+          line-height: 1.5em;
+          color: white;
       }
       body{
-          background-color:rgba(2, 11, 12,100);
+          background-color:black;
       }
-      .green{
-          
+      .carddecorate{
+          border-radius:20px;
+          opacity: 1;
+          background:rgb(109, 78, 21);
+      }
+      #time{
+          font-size:14px;
+          color: white;
       }
    </style>
 </head>
@@ -48,10 +56,10 @@
                     </div>
                     <div class="layui-col-md6 layui-col-sm6">
                         <div class="mycontainer">
-                            <div class="layui-card green">
-                                    <div class="layui-card-header">今天</div>
+                            <div class="layui-card carddecorate">
+                                    <div class="layui-card-header" id="time">今天</div>
                                     <div class="layui-card-body">
-                                             <i class="fa fa-heart fa-large faa-pulse animated" style="color:orangered"></i><p id="output"></p></i> 
+                                             <i class="fa fa-heart fa-large faa-pulse animated" style="color:orangered"></i><span id="output"></span></i> 
                                     </div>
                                   </div>
                                 </div>
@@ -197,5 +205,8 @@
         var showStr =showMsg+"<br><i class=\"fa fa-clock-o\" ></i>" + parseInt(day) + "天" + hour + "时" + min + "分" + lmin + "秒";
         var show = document.getElementById("output");
         show.innerHTML = showStr;
+        var time=document.getElementById("time");
+        var now=new Date();
+        time.innerHTML="今天 "+now.toLocaleString();
     }
 </script>

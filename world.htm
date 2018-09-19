@@ -9,16 +9,12 @@
     <link rel="stylesheet" href="style/font-awesome-animation.min.css">
     <link rel="stylesheet" href="style/font-awesome.min.css">
    <style>
-       .mycontainer{
-           margin:10px auto;
-           position:fixed;
-           top:35%;
-           padding: 10px 20px;
+       .mycontainer{ 
+           margin-top:30%;
        }
       h3{
           color:white;
           font-size:300%;
-          top:300px;
           text-shadow:2px 2px 2px #ff6a00
       }
        .footer {
@@ -28,23 +24,47 @@
            height:30px;
            padding:3px 6px;
            text-align:center;
-           color:wheat;
+           color:white;
            width:100%;
        }
       .fa-large{
-          font-size:200%;
+          font-size:400%;
+      }
+      #output{
+          font-size:300%;
+          line-height: 1.5em;
+          color: white;
+      }
+      body{
+          background-color:black;
+      }
+      .carddecorate{
+          border-radius:20px;
+          opacity: 1;
+          background:rgb(109, 78, 21);
+      }
+      #time{
+          font-size:14px;
+          color: white;
       }
    </style>
 </head>
-<body style="background-color: #292929">
+<body>
    <div class="layui-container">
                 <div class="layui-row layui-col-space12">
-                    <div class="layui-col-md3 layui-col-sm2">
+                    <div class="layui-col-md3 layui-col-sm3">
                     </div>
                     <div class="layui-col-md6 layui-col-sm6">
-                        <div class="mycontainer"><h3><i class="fa fa-heart fa-large faa-pulse animated" style="color:orangered"></i><span id="output"></span></i></h3></div>
+                        <div class="mycontainer">
+                            <div class="layui-card carddecorate">
+                                    <div class="layui-card-header" id="time">今天</div>
+                                    <div class="layui-card-body">
+                                             <i class="fa fa-heart fa-large faa-pulse animated" style="color:orangered"></i><span id="output"></span></i> 
+                                    </div>
+                                  </div>
+                                </div>
                     </div>
-                    <div class="layui-col-md3 layui-col-sm2">
+                    <div class="layui-col-md3 layui-col-sm3">
                     </div>
                 </div>
     </div>
@@ -185,5 +205,8 @@
         var showStr =showMsg+"<br><i class=\"fa fa-clock-o\" ></i>" + parseInt(day) + "天" + hour + "时" + min + "分" + lmin + "秒";
         var show = document.getElementById("output");
         show.innerHTML = showStr;
+        var time=document.getElementById("time");
+        var now=new Date();
+        time.innerHTML="今天 "+now.toLocaleString();
     }
 </script>
