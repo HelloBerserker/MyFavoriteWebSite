@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Hello,Myworld!</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <script type="text/javascript" src="script/jquery.js"></script>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="style/font-awesome-animation.min.css">
+    <link rel="stylesheet" href="style/font-awesome.min.css">
+   <style>
+       .mycontainer{ 
+           margin-top:30%;
+       }
+      h3{
+          color:white;
+          font-size:300%;
+          text-shadow:2px 2px 2px #ff6a00
+      }
+       .footer {
+           font-size: 14px;
+           position: fixed;
+           bottom:0px;
+           height:30px;
+           padding:3px 6px;
+           text-align:center;
+           color:wheat;
+           width:100%;
+       }
+      .fa-large{
+          font-size:200%;
+      }
+      #output{
+          font-size:150%;
+      }
+      body{
+          background-color:rgba(2, 11, 12,100);
+      }
+      .green{
+          
+      }
+   </style>
+</head>
+<body>
+   <div class="layui-container">
+                <div class="layui-row layui-col-space12">
+                    <div class="layui-col-md3 layui-col-sm3">
+                    </div>
+                    <div class="layui-col-md6 layui-col-sm6">
+                        <div class="mycontainer">
+                            <div class="layui-card green">
+                                    <div class="layui-card-header">今天</div>
+                                    <div class="layui-card-body">
+                                             <i class="fa fa-heart fa-large faa-pulse animated" style="color:orangered"></i><p id="output"></p></i> 
+                                    </div>
+                                  </div>
+                                </div>
+                    </div>
+                    <div class="layui-col-md3 layui-col-sm3">
+                    </div>
+                </div>
+    </div>
+    <div class="footer">CopyRight@程序员战士lijinfeng</div>
+<canvas id='cavs' style='position:fixed; z-index:-1;'></canvas>
+</body>
+</html>
+<script type="text/javascript">
+    var TotalSeconds = 1000000;
+    var canvas = document.getElementById("cavs");
+    var showMsg = "Counting Stars";
+    const WIDTH = window.innerWidth;
+    const HEIGHT = window.innerHeight;
+    canvas.setAttribute("width", WIDTH);
+    canvas.setAttribute("height", HEIGHT);
+    var context = canvas.getContext("2d");
+    var start =
+        {
+            loves: [],
+            DURATION: 30,
+            begin: function () {
+                this.createLove();
+            },
+            createLove: function () {
+                for (var i = 0; i < WIDTH / 59; i++) {
+                    var love = new Love();
+                    this.loves.push(love);
+                }
+                setInterval(this.drawLove.bind(this), this.DURATION);
+            },
+            drawLove: function () {
+                context.clearRect(0, 0, WIDTH, HEIGHT);
+                for (var key in this.loves) {
+                    this.loves[key].draw();
+                }
+            }
+        }
+    function Love() {
+        var me = this;
+        function rand() {
+            me.maxScale = (Math.random() * 3.2 + 1.2) * WIDTH / 521;
+            me.curScale = 1.2 * WIDTH / 200;
+            me.x = Math.floor(Math.random() * WIDTH - 40);
+            me.y = Math.floor(HEIGHT - Math.random() * 200);
+            me.ColR = Math.floor(Math.random() * 255);
+            me.ColG = Math.floor(Math.random() * 255);
+            me.ColB = Math.floor(Math.random() * 255);
+            me.alpha = Math.random() * 0.2 + 0.8;
+            me.vector = Math.random() * 5 + 0.4;
+        }
+        (function () { rand(); }());
+        me.draw = function () {
+            if (me.alpha < 0.01) rand();
+            if (me.curScale < me.maxScale) me.curScale += 0.3;
+            x = me.x;
+            y = me.y;
+            scale = me.curScale;
+            context.fillStyle = "rgba(" + me.ColR + "," + me.ColG + "," + me.ColB + "," + me.alpha + ")";
+            context.shadowBlur = 10;
+            context.shadowColor = "rgb(" + me.ColR + "," + me.ColG + "," + me.ColB + ")";
+            context.beginPath();
+            context.bezierCurveTo(x + 2.5 * scale, y + 2.5 * scale, x + 2.0 * scale, y, x, y);
+            context.bezierCurveTo(x - 3.0 * scale, y, x - 3.0 * scale, y + 3.5 * scale, x - 3.0 * scale, y + 3.5 * scale);
+            context.bezierCurveTo(x - 3.0 * scale, y + 5.5 * scale, x - 1.0 * scale, y + 7.7 * scale, x + 2.5 * scale, y + 9.5 * scale);
+            context.bezierCurveTo(x + 6.0 * scale, y + 7.7 * scale, x + 8.0 * scale, y + 5.5 * scale, x + 8.0 * scale, y + 3.5 * scale);
+            context.bezierCurveTo(x + 8.0 * scale, y + 3.5 * scale, x + 8.0 * scale, y, x + 5.0 * scale, y);
+            context.bezierCurveTo(x + 3.5 * scale, y, x + 2.5 * scale, y + 2.5 * scale, x + 2.5 * scale, y + 2.5 * scale);
+            context.fill();
+            context.closePath();
+            me.y -= me.vector;
+            me.alpha -= (me.vector / 2.9 * 3.5 / HEIGHT);
+        }
+    }
+    window.onload = function () {
+        start.begin();
+    }
+    $(function () {
+        $.ajax({
+            method: "POST",
+            url: "/Api/GetMeetTime.aspx",
+            complete: function (e) {
+                if (e.status != "200")
+                {
+                    alert("服务器响应失败" + e.status);
+                    return;
+                }
+                debugger;
+                var temp = JSON.parse(e.responseText);
+                if (!temp.time) {
+                    alert("无法获取时间");
+                    return;
+                }
+                if (!temp.message)
+                    console.log("无法获取消息");
+                else
+                    showMsg = temp.message;
+                TotalSeconds = parseInt(temp.time);
+                var ds = 24 * 60 * 60;
+                var hs = 60 * 60;
+                var ms = 60 ;
+                var day = TotalSeconds / ds;
+                //console.log(day);
+                var lday = TotalSeconds % ds;
+                var hour = lday / hs;
+                var lhour = lday % hs;
+                //console.log(hour);
+                var min = lhour / ms;
+                //console.log(min);
+                var lmin = lhour %ms;
+                ReFreshTime();
+                //console.log(lmin);
+                setInterval("ReFreshTime()", 1000)
+            }
+        })
+    })
+    function ReFreshTime()
+    {
+        var ds = 24 * 60 * 60;
+        var hs = 60 * 60;
+        var ms = 60;
+        var day = TotalSeconds / ds;
+        //console.log(day);
+        var lday = TotalSeconds % ds;
+        var hour = parseInt(lday / hs);
+        if(hour<10)
+        hour="0"+hour;
+        var lhour = lday % hs;
+        //console.log(hour);
+        var min = parseInt(lhour / ms);
+        if(min<10)
+        min="0"+min;
+        //console.log(min);
+        var lmin = lhour % ms;
+        if(lmin<10)
+        lmin="0"+parseInt(lmin);
+        //console.log(lmin);
+        TotalSeconds += 1;
+        var showStr =showMsg+"<br><i class=\"fa fa-clock-o\" ></i>" + parseInt(day) + "天" + hour + "时" + min + "分" + lmin + "秒";
+        var show = document.getElementById("output");
+        show.innerHTML = showStr;
+    }
+</script>
