@@ -20,7 +20,6 @@ public partial class TreeHole : System.Web.UI.Page
             result.Success = flag;
             result.Data.Add("Action", action);
             String name=db.StringGet("Today");
-            string toYueMei= db.StringGet("ToYueMei");
             result.Data.Add("Today", name);
         }
         catch(Exception ex)
