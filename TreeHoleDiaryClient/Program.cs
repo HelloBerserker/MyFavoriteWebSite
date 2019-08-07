@@ -15,15 +15,10 @@ namespace TreeHoleDiaryClient
             try
             {
                 Console.WriteLine("Choose An Operation:");
-                Console.WriteLine("1.ToYueMei\n2.TreeHole's Diary");
+                Console.WriteLine("1.TreeHole's Diary");
                 string key = Console.ReadLine();
                 string msg = "";
                 if (key == "1")
-                {
-                    key = "ToYueMei";
-                    msg = "ToYueMei";
-                }
-                else if (key == "2")
                 {
                     key = "Today";
                     msg = "TreeHole's Diary";
