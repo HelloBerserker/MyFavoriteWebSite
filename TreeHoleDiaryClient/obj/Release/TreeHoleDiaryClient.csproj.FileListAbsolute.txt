@@ -1,0 +1,9 @@
+D:\Repos\MyFavoriteWebSite\TreeHoleDiaryClient\bin\Release\TreeHoleDiaryClient.exe.config
+D:\Repos\MyFavoriteWebSite\TreeHoleDiaryClient\bin\Release\TreeHoleDiaryClient.exe
+D:\Repos\MyFavoriteWebSite\TreeHoleDiaryClient\bin\Release\TreeHoleDiaryClient.pdb
+D:\Repos\MyFavoriteWebSite\TreeHoleDiaryClient\bin\Release\StackExchange.Redis.dll
+D:\Repos\MyFavoriteWebSite\TreeHoleDiaryClient\bin\Release\StackExchange.Redis.xml
+D:\Repos\MyFavoriteWebSite\TreeHoleDiaryClient\obj\Release\TreeHoleDiaryClient.csproj.CoreCompileInputs.cache
+D:\Repos\MyFavoriteWebSite\TreeHoleDiaryClient\obj\Release\TreeHoleDiaryClient.csproj.CopyComplete
+D:\Repos\MyFavoriteWebSite\TreeHoleDiaryClient\obj\Release\TreeHoleDiaryClient.exe
+D:\Repos\MyFavoriteWebSite\TreeHoleDiaryClient\obj\Release\TreeHoleDiaryClient.pdb
