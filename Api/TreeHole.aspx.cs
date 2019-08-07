@@ -22,7 +22,6 @@ public partial class TreeHole : System.Web.UI.Page
             String name=db.StringGet("Today");
             string toYueMei= db.StringGet("ToYueMei");
             result.Data.Add("Today", name);
-            result.Data.Add("ToYueMei", toYueMei);
         }
         catch(Exception ex)
         {

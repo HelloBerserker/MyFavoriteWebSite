@@ -16,7 +16,7 @@ public partial class Api_GetMeetTime : System.Web.UI.Page
         {
             ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("lijinfeng.club,password=wsljf.");
             IDatabase db = redis.GetDatabase();
-            msg = db.StringGet("ToYueMei");
+            msg = db.StringGet("Today");
         }
         catch (Exception ex)
         {
