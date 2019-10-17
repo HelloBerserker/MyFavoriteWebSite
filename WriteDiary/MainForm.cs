@@ -12,6 +12,7 @@ namespace WriteDiary
 {
     public partial class MainForm : Form
     {
+       public readonly ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("lijinfeng.club,password=wsljf.");
         public MainForm()
         {
             InitializeComponent();
@@ -20,24 +21,30 @@ namespace WriteDiary
         private void btnOK_Click(object sender, EventArgs e)
         {
             try
-            {
-                ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("lijinfeng.club,password=wsljf.");
+            {               
                 var db = redis.GetDatabase();
                 var flag = db.StringSet("Today", this.richTextBox1.Text);
                 if (flag)
-                    MessageBox.Show("写入远程服务成功");
+                    lblMsg.Text="写入远程服务成功";
                 else
-                    MessageBox.Show("写入远程服务失败");
+                    lblMsg.Text = "写入远程服务失败";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:" + ex.Message);
+                lblMsg.Text = "Error:" + ex.Message;
             }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            var db= redis.GetDatabase();
+            string value = db.StringGet("Today");
+            this.richTextBox1.Text = value;
         }
     }
 }
