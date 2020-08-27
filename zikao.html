@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0038)http://www.boeebook.cn/article/show/85 -->
+<html xmlns="http://www.w3.org/1999/xhtml" style="scroll-behavior: auto;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    
+    <script type="text/javascript" src="./zikao/jquery-1.8.3.min.js.下载"></script>
+    <script language="javascript" type="text/javascript"> 
+            var skinPath = "/templates/pccommon";
+            var HasWapRight = true;
+            var IsOpenStores = false;
+            var IsOpenReferral = 1;
+            var HasVshopRight = true;
+            var ImageServerUrl="";
+            var ImageUploadPath="/admin/UploadHandler.ashx?action=newupload";
+            var ReferralSettingJson = {"BusinessCard":"我的名片","CommissionName":"佣金","DistributionName":"分销","FirstMemberName":"一级会员","IGoingOpenShopName":"我要分销","MyCommissionName":"我的佣金","MyLowerLevelName":"我的下级","MyShopName":"我的小店","ReferralName":"分销员","SecondMemberName":"二级会员","ShopReferralName":"店铺分销","ShopSettingName":"店铺信息","ThirdMemberName":"三级会员"};
+        </script>
+
+<meta http-equiv="content-language" content="zh-CN">
+<link rel="icon" type="image/x-icon" href="http://www.boeebook.cn/Favicon.ico" media="screen">
+<link rel="shortcut icon" type="image/x-icon" href="http://www.boeebook.cn/Favicon.ico" media="screen">
+<meta name="author" content="Hishop development team">
+<meta name="GENERATOR" content="3.8.5KB001">
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+$('embed').each(function () {
+            if (!$(this).attr('src')) {
+                $('embed').each(function () {
+                    if (!$(this).attr('src')) {
+                        $(this).attr('src', $(this).attr('data-url'));
+                        var newembed = $(this).clone();
+                        $(this).parent().append(newembed);
+                        $(this).remove();
+                    }
+                });
+
+                $('iframe').each(function () {
+                    if (!$(this).attr('src')) {
+                        $('iframe').each(function () {
+                            if (!$(this).attr('src')) {
+                                $(this).attr('src', $(this).attr('data-url'));
+                            }
+                        });
+                    }
+                });
+            }
+        });
+})            
+</script>
+
+
+    <script type="text/javascript">
+        //如果是网站首页直接跳转到WAP端首页，如果是其它页面，且该页面对应WAP端有相应的页面对直接中转到对应的WAP页面，如果没有则不跳转
+        var pageurl = document.location.href.toLowerCase();
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        var bIsWX = sUserAgent.match(/micromessenger/i) == "micromessenger";
+        //bIsWM = true;
+
+        if ((bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM || bIsWX) && (HasWapRight || HasVshopRight)) {
+            //解决分享到微信时，浏览器跳转到网站首页的问题
+            DirectUrl = GetWapUrl();
+            if (bIsWX && HasVshopRight)
+                location.href = "/vShop/" + DirectUrl;
+            else if (HasWapRight)
+                location.href = "/Wapshop/" + DirectUrl;
+        }
+        ///判断是否需要跳转，如果当前页面为首页或者帮助页，文单页则跳转，其它的不需要跳转
+        function IsDirect() {
+
+            if (pageurl.indexOf("/default.aspx") > -1) return true;
+            if (pageurl.indexOf("/article/") >= -1 && pageurl.indexOf("/help/") >= -1) return false;
+            return true;
+        }
+        ///获取PC端对应Wap端的页面地址，如果没有对应地址则返回空
+        function GetWapUrl() {
+            var PageKey = "";
+            var port = document.location.port;
+            var domain = document.domain;
+            var param = document.location.search;
+            if (port != "80" && port != "") domain = domain + ":" + port;
+            domain = "http://" + domain;
+
+            if ((pageurl.length == domain.length || (pageurl.length - 1) == domain.length) && pageurl.indexOf(domain) == 0) { return "default.aspx"; }
+            pageurl = pageurl.replace(domain.toLowerCase(), "");
+            if (pageurl.indexOf("/default") > -1) { return "/default"; }
+            if (pageurl.indexOf("/groupbuyproductdetails") > -1) { return "groupbuyproductdetails" + param }
+            if (pageurl.indexOf("/countdownproductsdetails") > -1) { return "countdownproductsdetails" + param }
+            if (pageurl.indexOf("/product_detail") > -1) { return "ProductDetails?productId=" + pageurl.replace("/product_detail/", "").replace(param.toLowerCase(), "") + param.replace("?", "&"); }
+            if (pageurl.indexOf("/productdetails") > -1) { return "ProductDetails" + param; }
+            if (pageurl.indexOf("/presaleproductdetails") > -1) { return "presaleproductdetails" + pageurl.replace("/presaleproductdetails", ""); }
+            if (pageurl.indexOf("/brand_detail") > -1) { return "BrandDetail?brandId=" + pageurl.replace("/brand/brand_detail/", ""); }
+            if (pageurl.indexOf("/brand") > -1) { return "brandlist" + pageurl.replace("/brand", ""); }
+            if (pageurl.indexOf("/browse/category") > -1) { return "ProductList?categoryId=" + pageurl.replace("/browse/category/", ""); }
+            if (pageurl.indexOf("/category") > -1) { return "productsearch"; }
+            if (pageurl.indexOf("/subcategory") > -1) { return "ProductList" + pageurl.replace("/subcategory", ""); }
+            if (pageurl.indexOf("/groupbuyproducts") > -1) { return "GroupBuyList"; }
+            if (pageurl.indexOf("/countdownproducts") > -1) { return "CountDownProducts"; }
+            if (pageurl.indexOf("/login") > -1) { return "login"; }
+
+
+            if (pageurl.indexOf("userdefault") > -1) { return "MemberCenter.aspx"; }
+            if (pageurl.indexOf("userorders") > -1) { return "MemberOrders.aspx"; }
+            if (pageurl.indexOf("usershippingaddresses") > -1) { return "ShippingAddresses.aspx" }
+            if (pageurl.indexOf("user/referralregisteragreement") > -1) { return "ReferralRegisterAgreement.aspx"; }
+            if (pageurl.indexOf("user/referralregisterresults") > -1) { return "referralregisterresults"; }
+            if (pageurl.indexOf("/user/") > -1) { return "MemberCenter.aspx"; }
+            if (pageurl.indexOf("articles") > -1) { return "Articles.aspx" + param; }
+            if (pageurl.indexOf("articledetails") > -1) { return "ArticleDetails" + param; }
+            if (pageurl.indexOf("appdownload") > -1) { return "appdownload.aspx"; }
+            if (pageurl.indexOf("registeredcoupons") > -1) { return "registeredcoupons.aspx"; }//解决扫码登录无法跳转的bug
+            if (pageurl.indexOf("referralagreement") > -1) { return "ReferralAgreement" + param; }
+            if (pageurl.indexOf("register") > -1) { return "login?action=register"; }
+            if (pageurl.indexOf("/un_product_detail") > -1) { return "ProductDetails?productId=" + pageurl.replace("/un_product_detail/", "").replace(param.toLowerCase(), "") + param.replace("?", "&"); }
+            return "";
+        }
+
+
+        function GetPageKey(pagepre, IsEnd) {
+            if (pageurl.indexOf(pagepre) > -1) {
+                var endIndex = 0;
+                if (!IsEnd) {
+                    endIndex = pageurl.indexOf(".aspx");
+                    if (endIndex <= -1) endIndex = pageurl.indexOf(".htm")
+                }
+                else {
+                    endIndex = pageurl.length;
+                }
+                var startIndex = pageurl.indexOf(pagepre) + pagepre.length;
+                if (startIndex >= 0 && endIndex > startIndex)
+                    return pageurl.substring(startIndex, endIndex);
+            }
+            return "0";
+        }</script>
+    <title>上海交通大学--计算机及应用（独立本科080901） - 博益</title>
+
+    <meta name="description" content="上海交通大学--工业电气自动化技术（专科080901）（停考过渡）">
+<meta name="keywords" content="上海交通大学--工业电气自动化技术（专科080901）（停考过渡）">
+
+    <script type="text/javascript" defer="defer" src="./zikao/icheck.min.js.下载"></script>
+    <script type="text/javascript" src="./zikao/nav.js.下载"></script>
+    <script type="text/javascript" src="./zikao/globals.js.下载"></script>
+    <script type="text/javascript" src="./zikao/region.helper.js.下载"></script>
+    <script type="text/javascript" src="./zikao/traffic.js.下载"></script>
+    <link rel="stylesheet" type="text/css" href="./zikao/bootstrap.min.css">
+    <link rel="stylesheet" href="./zikao/nav.css" type="text/css" media="">
+    <link rel="stylesheet" href="./zikao/style.css" type="text/css" media="">
+    <link rel="stylesheet" href="./zikao/menu.css" type="text/css" media="">
+    <link href="./zikao/iconfont.css" rel="Stylesheet">
+    <link rel="stylesheet" href="./zikao/region.css" type="text/css" media="">
+    <script type="text/javascript" defer="defer" src="./zikao/windows.js.下载"></script>
+    <link href="./zikao/windows.css" rel="stylesheet">
+    <link rel="stylesheet" href="./zikao/home.css" type="text/css" media="">
+    <script type="text/javascript">
+                                    var homePageTopicId = 0;</script><style type="text/css" abt="234"></style> 
+
+    <link rel="stylesheet" href="./zikao/bootstrap-datetimepicker.css" type="text/css" media="screen">
+    <script type="text/javascript" src="./zikao/bootstrap-datetimepicker.min.js.下载"></script>
+	<script type="text/javascript" src="./zikao/bootstrap-datetimepicker.zh-CN.js.下载"></script>    
+    
+<style>
+    * {
+        box-sizing: content-box;
+    }
+</style></head>
+
+
+
+
+<body style="">
+    
+    
+
+
+
+    <!--my_left_category-->
+    <script>
+        var currenturl = location.href.substr(location.href.lastIndexOf('/') + 1, location.href.length - 20);
+
+        $(".all").hover(function () {
+            $(".my_left_category").slideDown(1000).css({ 'display': 'block' });
+        }, function () {
+            $(".my_left_category").css({ 'display': 'none' });
+        });
+
+        //$(function(){
+        $(".h2_cat").each(function () {
+            $(this).hover(function () {
+                if ($(this).hasClass('active_cat')) {
+                    $(this).removeClass("active_cat");
+                } else {
+                    $(this).addClass('active_cat');
+                }
+            });
+        });
+        //})
+    </script>
+
+    <!--xinren-->
+    <script type="text/javascript">
+        function Showxinren_tab() {
+            document.getElementById("xinren_tab").style.display = "block";
+        }
+
+        function Hiddenxinren_tab() {
+            document.getElementById("xinren_tab").style.display = "none";
+        }
+    </script>
+    <!--fenxiang-->
+    <script type="text/javascript" src="./zikao/jia.js.下载" charset="utf-8"></script>
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('.dialog_title_r').click(function () {
+                $('.login_tan').hide();
+                $('.modal_qt').hide();
+            })
+            var hidIsLogin = $("#hidIsLogin");
+            if (hidIsLogin.val() == "1") {
+                $("#liLinkLogin").addClass("fore3");
+            } else {
+                $("#liLinkLogin").removeClass("fore3");
+            }
+        });
+
+    </script>
+
+<div class="main" id="main1">
+	<style>
+body{ background: #f3f3f3;}
+.main{ margin-top: 20px; overflow: hidden;}
+        .art_add_c img {
+            max-width:100%;
+        }
+</style>
+    <div class="tqj">
+    </div>
+    <div class="container articleshelp">        
+        <div class="cssright">
+            <div class="cssright_h1">
+                <a href="http://www.boeebook.cn/">首页</a> &gt; 文章详细
+            </div>
+            <div class="cssborder">
+                <h2 class="cssright_h2">
+                    上海交通大学--计算机及应用（独立本科080901）</h2>
+                <div class="art_add_date">
+                    发布日期：<span class="cORed">2020-05-09 10:44:48</span>
+                    <strong class="spanB" style="cursor: pointer;" onclick="window.close();">【关闭】 </strong>
+                </div>
+                <div style="display: none;">
+                    摘要：</div>
+                <div class="art_add_c">
+                    <title>无标题文档</title><style type="text/css"><!--
+.标 {
+	font-family: "宋体";
+	font-size: 13px;
+	text-align: justify;
+	text-indent: 27px;
+}
+.STYLE32 {color: #666666}
+.STYLE33 {color: #FFFFFF; }
+.STYLE36 {font-size: 13px; font-family: "宋体"; color: #666666; }
+.STYLE42 {font-family: "宋体"; color: #FFFFFF; font-size: 13px; }
+.STYLE46 {font-family: "宋体"}
+.STYLE47 {font-size: 13px}
+.STYLE48 {
+	font-size: 18px;
+	color: #0000FF;
+}
+.STYLE49 {
+	color: #FF0000;
+	font-weight: bold;
+}
+.STYLE50 {
+	font-size: 18px;
+	color: #0000FF;
+	font-weight: bold;
+	font-family: "宋体";
+}
+.STYLE51 {font-family: "宋体"; font-size: 13px; text-align: justify; text-indent: 27px; font-weight: bold; }
+tr {
+	background-color: #FFFFFF;
+}
+tr:hover {
+	background-color: #FFFFCC;
+}
+--></style><p class="标">本专业由上海交通大学主考，面向社会开考。</p><p class="标">本专业为专科和独立本科段两个学历层次。</p><p class="标">独立本科段基本要求：</p><p class="标">系统地掌握计算机软件、硬件的基础理论知识；具有计算机应用系统的分析、设计、实现及维护的知识与技能；具有阅读本专业外文资料的能力。</p><p class="标">说 明：</p><p class="标">1、各类本科及以上毕业生和理工科类专科毕业生可直接报考本专业（独立本科段）。非理工类专科毕业生报考本专业（独立本科段）时，须加考“计算机组成原理”（课程代码：02318，4学分）和“电子技术基础（三）”（课程代码：04730、04731，7学分）两门课程。</p><p class="标">2、本科应考者在全部课程考试合格后，必须进行毕业设计。毕业设计题目由主考学校确定，也可结合应考者的工作实际自选，但必须经主考院校审批同意。主考院校可为考生指派指导教师。毕业设计完成后由主考院校组织评阅答辩。</p><table width="924" border="1" bordercolor="#FFFFFF"><tbody><tr class="firstRow"><th width="35" height="30" bgcolor="#4A98AF"><p align="center" class="STYLE42">序号</p></th><th width="60" height="30" bgcolor="#4A98AF"><p align="center" class="STYLE42">课程代码</p></th><th width="293" height="30" bgcolor="#4A98AF"><p align="center" class="STYLE42">课程名称</p></th><th width="293" height="30" bgcolor="#4A98AF"><p align="center" class="STYLE42">教材名称</p></th><th width="33" height="30" bgcolor="#4A98AF"><p align="center" class="STYLE42">学分</p></th><th width="170" height="30" bgcolor="#4A98AF"><p align="center" class="STYLE42">备注</p></th></tr><tr><td height="30" class="STYLE36"><p align="center" class="STYLE36">1</p></td><td class="STYLE36"><p align="center">03709</p></td><td class="STYLE36"><p>马克思主义基本原理概论</p></td><td><p><a href="http://www.boeebook.cn/ProductDetails?productId=4180" target="_blank" _href="http://www.boeebook.cn/ProductDetails?productId=4180" textvalue="马克思主义基本原理概论"><span style="color: rgb(0, 112, 192);">马克思主义基本原理概论</span></a></p></td><td class="STYLE36"><p align="center">4</p></td><td></td></tr><tr><td height="30" bgcolor="#E1E9F0" class="STYLE36"><p align="center" class="STYLE36">2</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p align="center">03708</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p>中国近现代史纲要</p></td><td bgcolor="#E1E9F0"><p><a href="http://www.boeebook.cn/ProductDetails?productId=4181" target="_blank" _href="http://www.boeebook.cn/ProductDetails?productId=4181" textvalue="中国近现代史纲要"><span style="color: rgb(0, 112, 192);">中国近现代史纲要</span></a></p></td><td bgcolor="#E1E9F0" class="STYLE36"><p align="center">2</p></td><td bgcolor="#E1E9F0"></td></tr><tr><td height="30" class="STYLE36"><p align="center" class="STYLE36">3</p></td><td class="STYLE36"><p align="center">00015</p></td><td class="STYLE36"><p>英语(二)</p></td><td><p><a href="http://www.boeebook.cn/product_detail/2493" target="_blank" _href="http://www.boeebook.cn/product_detail/2493" style="color: rgb(0, 112, 192); text-decoration: underline;"><span style="color: rgb(0, 112, 192);">英语（二）自学教程</span></a></p></td><td class="STYLE36"><p align="center">14</p></td><td></td></tr><tr><td height="30" bgcolor="#E1E9F0" class="STYLE36"><p align="center">4</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p align="center">00023</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p>高等数学（工本）</p></td><td bgcolor="#E1E9F0"><p><a href="http://www.boeebook.cn/product_detail/4470" target="_blank" _href="http://www.boeebook.cn/product_detail/4470" textvalue="高等数学（工本）"><span style="color: rgb(0, 112, 192);">高等数学（工本）</span></a></p></td><td bgcolor="#E1E9F0" class="STYLE36"><p align="center">10</p></td><td bgcolor="#E1E9F0"></td></tr><tr><td height="30" class="STYLE36"><p align="center">5</p></td><td class="STYLE36"><p align="center">04747</p></td><td class="STYLE36"><p>Java语言程序设计（一）</p></td><td><p><a href="http://www.boeebook.cn/product_detail/3345" target="_blank" _href="http://www.boeebook.cn/product_detail/3345" style="color: rgb(0, 112, 192); text-decoration: underline;"><span style="color: rgb(0, 112, 192);">Java语言程序设计（一）</span></a></p></td><td class="STYLE36"><p align="center">4</p></td><td class="STYLE36"><p>含实践性考核（4748）1学分</p></td></tr><tr><td height="30" bgcolor="#E1E9F0" class="STYLE36"><p align="center">6</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p align="center">02197</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p>概率论与数理统计（二）</p></td><td bgcolor="#E1E9F0"><p><a href="http://www.boeebook.cn/ProductDetails?productId=4204" target="_blank" _href="http://www.boeebook.cn/ProductDetails?productId=4204" textvalue="概率论与数理统计（二）"><span style="color: rgb(0, 112, 192);">概率论与数理统计（二）</span></a></p></td><td bgcolor="#E1E9F0" class="STYLE36"><p align="center">3</p></td><td bgcolor="#E1E9F0" class="STYLE36"></td></tr><tr><td height="30" class="STYLE36"><p align="center">7</p></td><td class="STYLE36"><p align="center">02324</p></td><td class="STYLE36"><p>离散数学</p></td><td><p><a href="http://www.boeebook.cn/product_detail/1975" target="_blank" _href="http://www.boeebook.cn/product_detail/1975" style="color: rgb(0, 112, 192); text-decoration: underline;"><span style="color: rgb(0, 112, 192);">离散数学</span></a></p></td><td class="STYLE36"><p align="center">4</p></td><td class="STYLE36"></td></tr><tr><td height="30" bgcolor="#E1E9F0" class="STYLE36"><p align="center">8</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p align="center">02331</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p>数据结构</p></td><td bgcolor="#E1E9F0"><p><a href="http://www.boeebook.cn/product_detail/1971" target="_blank" _href="http://www.boeebook.cn/product_detail/1971" style="color: rgb(0, 112, 192); text-decoration: underline;"><span style="color: rgb(0, 112, 192);">数据结构</span></a></p></td><td bgcolor="#E1E9F0" class="STYLE36"><p align="center">5</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p>含实践性考核（4734）2学分</p></td></tr><tr><td height="30" class="STYLE36"><p align="center">9</p></td><td class="STYLE36"><p align="center">04735</p></td><td class="STYLE36"><p>数据库系统原理</p></td><td><p><a href="http://www.boeebook.cn/ProductDetails?productId=3894" target="_blank" _href="http://www.boeebook.cn/ProductDetails?productId=3894" textvalue="数据库系统原理"><span style="color: rgb(0, 112, 192);">数据库系统原理</span></a></p></td><td class="STYLE36"><p align="center">6</p></td><td class="STYLE36"><p>含实践性考核（4736）2学分</p></td></tr><tr><td height="30" bgcolor="#E1E9F0" class="STYLE36"><p align="center">10</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p align="center">02325</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p>计算机系统结构</p></td><td bgcolor="#E1E9F0"><p><a href="http://www.boeebook.cn/product_detail/1973" target="_blank" _href="http://www.boeebook.cn/product_detail/1973" style="color: rgb(0, 112, 192); text-decoration: underline;"><span style="color: rgb(0, 112, 192);">计算机系统结构</span></a></p></td><td bgcolor="#E1E9F0" class="STYLE36"><p align="center">4</p></td><td bgcolor="#E1E9F0" class="STYLE36"></td></tr><tr><td height="30" class="STYLE36"><p align="center">11</p></td><td class="STYLE36"><p align="center">02326</p></td><td class="STYLE36"><p>操作系统</p></td><td><p><a href="http://www.boeebook.cn/product_detail/3349" target="_blank" _href="http://www.boeebook.cn/product_detail/3349" style="color: rgb(0, 112, 192); text-decoration: underline;"><span style="color: rgb(0, 112, 192);">操作系统</span></a></p></td><td class="STYLE36"><p align="center">4</p></td><td class="STYLE36"><p>含实践性考核（2327）1学分</p></td></tr><tr bgcolor="#E1E9F0"><td height="30" bgcolor="#E1E9F0" class="STYLE36"><p align="center">12</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p align="center">04737</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p>C++程序设计</p></td><td bgcolor="#E1E9F0"><p><a href="http://www.boeebook.cn/product_detail/1940" target="_blank" _href="http://www.boeebook.cn/product_detail/1940" style="color: rgb(0, 112, 192); text-decoration: underline;"><span style="color: rgb(0, 112, 192);">C++程序设计</span></a></p></td><td bgcolor="#E1E9F0" class="STYLE36"><p align="center">5</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p>含实践性考核（4738）2学分</p></td></tr><tr><td height="30" class="STYLE36"><p align="center">13</p></td><td class="STYLE36"><p align="center">02333</p></td><td class="STYLE36"><p>软件工程</p></td><td><p><a href="http://www.boeebook.cn/product_detail/1970" target="_blank" _href="http://www.boeebook.cn/product_detail/1970" style="color: rgb(0, 112, 192); text-decoration: underline;"><span style="color: rgb(0, 112, 192);">软件工程</span></a></p></td><td class="STYLE36"><p align="center">4</p></td><td class="STYLE36"><p>含实践性考核（2334）1学分</p></td></tr><tr bgcolor="#E1E9F0"><td height="30" bgcolor="#E1E9F0" class="STYLE36"><p align="center">14</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p align="center">04741</p></td><td bgcolor="#E1E9F0" class="STYLE36"><p>计算机网络原理</p></td><td bgcolor="#E1E9F0"><p><a href="http://www.boeebook.cn/ProductDetails?productId=3902" target="_blank" _href="http://www.boeebook.cn/ProductDetails?productId=3902" textvalue="计算机网络原理"><span style="color: rgb(0, 112, 192);">计算机网络原理</span></a></p></td><td bgcolor="#E1E9F0" class="STYLE36"><p align="center">4</p></td><td bgcolor="#E1E9F0" class="STYLE36"></td></tr><tr><td height="30" class="STYLE36"><div align="center">15</div></td><td class="STYLE36"><p align="center">10203</p></td><td class="STYLE36"><p>计算机及应用毕业设计</p></td><td></td><td></td><td class="STYLE36"><p>不计学分</p></td></tr><tr><th height="30" bgcolor="#4A98AF"><p align="center" class="STYLE42">合计</p></th><td height="30" bgcolor="#4A98AF"><p>&nbsp;</p></td><td height="30" bgcolor="#4A98AF"><div align="center"><span class="STYLE32"><span class="STYLE33"><span class="STYLE46"><span class="STYLE47"></span></span></span></span></div></td><td height="30" bgcolor="#4A98AF"><div align="center"><span class="STYLE32"><span class="STYLE33"><span class="STYLE46"><span class="STYLE47"></span></span></span></span></div></td><th height="30" bgcolor="#4A98AF" class="STYLE42"><div align="center">74</div></th><th height="30" bgcolor="#4A98AF" class="STYLE42"><div align="center">14门课程（不含毕业设计）</div></th></tr></tbody></table><p>&nbsp;</p><p align="left" class="STYLE48 STYLE46 STYLE3"><strong>2020年4月上海市自学考试日程安排表</strong></p><table width="924" border="1" bordercolor="#FFFFFF"><tbody><tr class="firstRow"><td colspan="2" bgcolor="#4A98AF" class="STYLE36"><div align="center" class="STYLE42"><span class="STYLE16">4月11日（星期六）</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div></td><td colspan="2" bgcolor="#4A98AF" class="STYLE36"><div align="center" class="STYLE42"><span class="STYLE16">4月12日（星期日）</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div></td><td colspan="2" bgcolor="#4A98AF" class="STYLE36"><div align="center" class="STYLE42"><span class="STYLE16">4月18日（星期六）</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div></td><td colspan="2" bgcolor="#4A98AF" class="STYLE36"><div align="center" class="STYLE42"><span class="STYLE16">4月19日（星期日）</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div></td></tr><tr><td width="109" class="STYLE36"><div align="center" class="STYLE21 STYLE46 STYLE47 STYLE32"><span class="STYLE19">9:00-11:30</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div></td><td width="109" class="STYLE36"><div align="center" class="STYLE21 STYLE46 STYLE47 STYLE32"><span class="STYLE19">14:30-17:00</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div></td><td width="109" class="STYLE36"><div align="center" class="STYLE21 STYLE46 STYLE47 STYLE32"><span class="STYLE19">9:00-11:30</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div></td><td width="109" class="STYLE36"><div align="center" class="STYLE21 STYLE46 STYLE47 STYLE32"><span class="STYLE19">14:30-17:00</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div></td><td width="109" class="STYLE36"><div align="center" class="STYLE21 STYLE46 STYLE47 STYLE32"><span class="STYLE19">9:00-11:30</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div></td><td width="109" class="STYLE36"><div align="center" class="STYLE21 STYLE46 STYLE47 STYLE32"><span class="STYLE19">14:30-17:00</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div></td><td width="109" class="STYLE36"><div align="center" class="STYLE21 STYLE46 STYLE47 STYLE32"><span class="STYLE19">9:00-11:30</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div></td><td width="109" class="STYLE36"><div align="center" class="STYLE21 STYLE46 STYLE47 STYLE32"><span class="STYLE19">14:30-17:00</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div></td></tr><tr><td width="109" bgcolor="#E1E9F0" class="STYLE36">*(02324)离散数学</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">*(02326)操作系统</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">*(02197)概率论与数理统计 &nbsp;（二）</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">*(00015)英语（二）</td><td width="109" bgcolor="#E1E9F0">&nbsp;</td><td width="109" bgcolor="#E1E9F0">&nbsp;</td><td width="109" bgcolor="#E1E9F0">&nbsp;</td><td width="109" bgcolor="#E1E9F0">&nbsp;</td></tr><tr><td width="109" class="STYLE36">*(02318)计算机组成原理（J）</td><td width="109" class="STYLE36"><span class="STYLE22"></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*(04735)数据库系统原理</td><td width="109" class="STYLE36">*(02325)计算机系统结构</td><td width="109" class="STYLE36"><span class="STYLE22"></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*(00023)高等数学（工本）</td><td width="109"><span class="STYLE22"></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td><td width="109"><span class="STYLE22"></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td><td width="109"><span class="STYLE22"></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td><td width="109"><span class="STYLE22"></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td></tr><tr><td width="109" bgcolor="#E1E9F0" class="STYLE36">*(03708)中国近现代史纲要</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">*(04730)电子技术基础（三）（J）</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">&nbsp;</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">*(04741)计算机网络原理</td><td width="109" bgcolor="#E1E9F0">&nbsp;</td><td width="109" bgcolor="#E1E9F0">&nbsp;</td><td width="109" bgcolor="#E1E9F0">&nbsp;</td><td width="109" bgcolor="#E1E9F0">&nbsp;</td></tr><tr><td width="109" class="STYLE36">&nbsp;</td><td width="109" class="STYLE36"><span class="STYLE22"></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*(03709)马克思主义基本原理概论</td><td width="109" class="STYLE36"><span class="STYLE22"></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td><td width="109" class="STYLE36"><span class="STYLE22"></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td><td width="109"><span class="STYLE22"></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td><td width="109"><span class="STYLE22"></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td><td width="109"><span class="STYLE22"></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td><td width="109"><span class="STYLE22"></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td></tr></tbody></table><p class="STYLE3">&nbsp;</p><p class="STYLE50">2019年10月上海市自学考试日程安排表</p><table width="924" border="1" bordercolor="#FFFFFF"><tbody><tr class="firstRow"><td colspan="2" bgcolor="#4A98AF" class="STYLE36"><div align="center" class="STYLE33"><span class="STYLE16">10月19日（星期六）</span></div></td><td colspan="2" bgcolor="#4A98AF" class="STYLE36"><div align="center" class="STYLE33"><span class="STYLE16">10月20日（星期日）</span></div></td><td colspan="2" bgcolor="#4A98AF" class="STYLE36"><div align="center" class="STYLE33"><span class="STYLE16">10月26日（星期六）</span></div></td><td colspan="2" bgcolor="#4A98AF" class="STYLE36"><div align="center" class="STYLE33"><span class="STYLE16">10月27日（星期日）</span></div></td></tr><tr><td width="109" class="STYLE36"><div align="center" class="STYLE21"><span class="STYLE19">9:00-11:30</span></div></td><td width="109" class="STYLE36"><div align="center" class="STYLE21"><span class="STYLE19">14:30-17:00</span></div></td><td width="109" class="STYLE36"><div align="center" class="STYLE21"><span class="STYLE19">9:00-11:30</span></div></td><td width="109" class="STYLE36"><div align="center" class="STYLE21"><span class="STYLE19">14:30-17:00</span></div></td><td width="109" class="STYLE36"><div align="center" class="STYLE21"><span class="STYLE19">9:00-11:30</span></div></td><td width="109" class="STYLE36"><div align="center" class="STYLE21"><span class="STYLE19">14:30-17:00</span></div></td><td width="109" class="STYLE36"><div align="center" class="STYLE21"><span class="STYLE19">9:00-11:30</span></div></td><td width="109" class="STYLE36"><div align="center" class="STYLE21"><span class="STYLE19">14:30-17:00</span></div></td></tr><tr><td width="109" bgcolor="#E1E9F0" class="STYLE36">*(02331)数据结构</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">*(00023)高等数学（工本）</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">*(04737)C++程序设计</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">*(02333)软件工程</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">&nbsp;</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">&nbsp;</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">&nbsp;</td><td width="109" bgcolor="#E1E9F0" class="STYLE36"><p>&nbsp;</p></td></tr><tr><td width="109" class="STYLE36">*(04747)Java 语言程序设计（一）</td><td width="109" class="STYLE36">&nbsp;</td><td width="109" class="STYLE36">*(03708)中国近现代史纲要</td><td width="109" class="STYLE36">*(00015)英语(二)</td><td width="109" class="STYLE36">&nbsp;</td><td width="109" class="STYLE36">&nbsp;</td><td width="109" class="STYLE36">&nbsp;</td><td width="109" class="STYLE36">&nbsp;</td></tr><tr><td width="109" bgcolor="#E1E9F0" class="STYLE36">*(03709)马克思主义基本原理概论</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">&nbsp;</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">&nbsp;</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">&nbsp;</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">&nbsp;</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">&nbsp;</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">&nbsp;</td><td width="109" bgcolor="#E1E9F0" class="STYLE36">&nbsp;</td></tr></tbody></table><p align="left"><span class="STYLE2 STYLE46 STYLE47 STYLE49">考试时间以下载座位号为准！</span></p><!--!doctype--></div>
+            </div>
+           
+        </div>
+    </div>
+    <div class="tqj">
+    </div>
+    <div class="article_relative">
+        <ul>
+            </ul>
+    </div>
+</div>
+
+
+
+
+
+
+ 
+<script src="./zikao/china.js.下载"></script>
+<script src="./zikao/jquery.cookie.js.下载"></script>
+<script type="text/javascript">
+    var uid = 0;
+    $(document).ready(function () {
+        uid = parseInt($.cookie("uid"));
+        if (isNaN(uid)) uid = 0;
+        if (uid == 1) {
+            uid ? (run()) : (run());
+            $("#id_c").html("切换简体");
+        }
+    });
+    $(document).bind('click', function (e) {
+        var a = $(e.target).attr('id');
+        if (a == 'id_c') {
+            uid ? (run()) : (run());
+            (uid == 1) ? (uid = 0, $('#id_c').html('切换繁体')) : (uid += 1, $('#id_c').html('切换简体'));
+            $.cookie("uid", uid);
+        }
+    });
+</script>
+
+ 
+
+
+</body></html>
